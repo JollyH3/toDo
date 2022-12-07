@@ -2,33 +2,37 @@ function addToDo(){
     //reset main div
     document.getElementById("main").innerHTML = "";
 
-    let p = document.createElement("p");
-    p.innerHTML = "Add a new To Do";
-    document.getElementById("main").appendChild(p);
+    let addMain = `
+    <div class="add-main">
+        <div class="add-main__header">
+              <h1>Add To Do</h1>
+        </div>
+        <div class="add-main__body">
+            <input type="text" placeholder="Enter To Do" id="add-input">
+            <button id="add-button" onclick="addToDoList()">Add</button>
+            <button id="cancel-button" onclick="setDefaultPage()">Cancel</button>
+        </div>
+    </div>
+    `;
 
-    let input = document.createElement("input");
-    input.setAttribute("type", "text");
-    input.setAttribute("id", "title");
-    document.getElementById("main").appendChild(input);
-
-    let button = document.createElement("button");
-    button.setAttribute("id", "button");
-    button.setAttribute("onclick", "addToDoList()");
-    button.innerHTML = "Add";
-    document.getElementById("main").appendChild(button);
+    document.getElementById("main").innerHTML = addMain;
 }
 
 function addToDoList(){
-    let title = document.getElementById("title").value;
+
+    let toDo = {
+        title : document.getElementById("add-input").value,
+        toDoList: []
+    };
 
     let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
 
-    if(toDoDir == null){
+    if (toDoDir == null) {
         toDoDir = [];
-    }else{
-        toDoDir.push(title);
-        localStorage.setItem("toDoDir", JSON.stringify(toDoDir));
     }
+
+    toDoDir.push(toDo);
+    localStorage.setItem("toDoDir", JSON.stringify(toDoDir));
 
     setDefaultPage();
 }
@@ -45,13 +49,28 @@ function setDefaultPage(){
       fillToDoContainer = "No To Do's";
     }else {
         for (let i = 0; i < toDoDir.length; i++) {
-            fillToDoContainer += `<div id="toDo${i}" class="toDoPackage">${toDoDir[i]}</div>`;
+            fillToDoContainer += `
+            <div id="toDo${i}" class="toDoPackage">
+            <a id="#${i}" href="#${i}" class="toDoPackageLink">
+            <div id="toDoInternalPackage">
+            <p class="toDoListTitle">${toDoDir[i].title}</p>
+            <ul class="toDoList">
+            <li class="toDoList1">${prova(toDoDir[i].toDoList[0])}</li>
+            <li class="toDoList2">${prova(toDoDir[i].toDoList[1])}</li>
+            <li class="toDoList3">...</li>
+            </li>
+            </ul>
+            <p></p>
+            </div>
+            </a>
+            </div>
+    `;
         }
     }
 
     let defaultMain = `
     <h3>YOUR TO-DO</h3>
-    <div id="toDoContainer"><a href="#1">${fillToDoContainer}</a></div>
+    <div id="toDoContainer">${fillToDoContainer}</div>
     <button id="addToDo" onclick="addToDo()">add To Do</button>
     <button id="delToDo" onclick="delToDo()">delete To Do</button>
     `;
@@ -59,6 +78,13 @@ function setDefaultPage(){
     document.getElementById("main").innerHTML = defaultMain;
 }
 
+function prova(toDo){
+    if (toDo == null){
+        return "add to do";
+    }else{
+        return toDo;
+    }
+}
 function delToDo(){
 
 }
