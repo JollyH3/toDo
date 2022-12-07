@@ -9,6 +9,8 @@ function addToDo(){
         </div>
         <div class="add-main__body">
             <input type="text" placeholder="Enter To Do" id="add-input">
+            <label for="color">Color</label>
+            <input type="color" id="color" name="color" value="#000000">
             <button id="add-button" onclick="addToDoList()">Add</button>
             <button id="cancel-button" onclick="setDefaultPage()">Cancel</button>
         </div>
@@ -22,6 +24,7 @@ function addToDoList(){
 
     let toDo = {
         title : document.getElementById("add-input").value,
+        color : document.getElementById("color").value,
         toDoList: []
     };
 
@@ -55,8 +58,8 @@ function setDefaultPage(){
             <div id="toDoInternalPackage">
             <p class="toDoListTitle">${toDoDir[i].title}</p>
             <ul class="toDoList">
-            <li class="toDoList1">${prova(toDoDir[i].toDoList[0])}</li>
-            <li class="toDoList2">${prova(toDoDir[i].toDoList[1])}</li>
+            <li class="toDoList1">${toDoList(toDoDir[i].toDoList[0])}</li>
+            <li class="toDoList2">${toDoList(toDoDir[i].toDoList[1])}</li>
             <li class="toDoList3">...</li>
             </li>
             </ul>
@@ -69,16 +72,23 @@ function setDefaultPage(){
     }
 
     let defaultMain = `
-    <h3>YOUR TO-DO</h3>
+    <h3 id="mainTitle">YOUR TO-DO</h3>
     <div id="toDoContainer">${fillToDoContainer}</div>
-    <button id="addToDo" onclick="addToDo()">add To Do</button>
-    <button id="delToDo" onclick="delToDo()">delete To Do</button>
+    <button id="addToDo" onclick="addToDo()">Add To Do</button>
+    <button id="delToDo" onclick="delToDo()">Delete To Do</button>
     `;
 
     document.getElementById("main").innerHTML = defaultMain;
+
+    //set color
+    if (toDoDir != null){
+        for (let i = 0; i < toDoDir.length; i++) {
+            document.getElementById("toDo" + i).style.backgroundColor = toDoDir[i].color;
+        }
+    }
 }
 
-function prova(toDo){
+function toDoList(toDo){
     if (toDo == null){
         return "add to do";
     }else{
@@ -86,5 +96,17 @@ function prova(toDo){
     }
 }
 function delToDo(){
+    document.getElementById("mainTitle").innerHTML = "Press any To Do to delete";
+    let cancel = document.getElementById("addToDo");
+    cancel.innerHTML = "Cancel";
+    cancel.setAttribute("onclick", "setDefaultPage()");
 
+    let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
+    for (let i = 0; i < toDoDir.length; i++) {
+        document.getElementById("toDo" + i).onclick = function () {
+            toDoDir.splice(i, 1);
+            localStorage.setItem("toDoDir", JSON.stringify(toDoDir));
+            setDefaultPage();
+        }
+    }
 }
