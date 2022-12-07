@@ -5,3 +5,10 @@
     background-color: black;
     text-align: center;
 }
+
+.toDoPackage{
+    background: aqua;
+    border-radius: 30px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+}

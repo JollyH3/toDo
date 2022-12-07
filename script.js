@@ -38,18 +38,14 @@ function setDefaultPage(){
     document.getElementById("main").innerHTML = "";
 
     let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
-    let toDoList = `
-    <li>No To Do</li>
-    `;
-    if (toDoDir != null){
-        toDoList = "";
-        for (let i = 0; i < toDoDir.length; i++){
-            toDoList += `<li id="${i}">${toDoDir[i]}</li>`;
-        }
+
+    let fillToDoContainer = "";
+    for (let i = 0; i < toDoDir.length; i++) {
+        fillToDoContainer += `<div id="toDo${i}" class="toDoPackage">${toDoDir[i]}</div>`;
     }
     let defaultMain = `
     <h3>YOUR TO-DO</h3>
-    <ul id="toDoList">${toDoList}</ul>
+    <div id="toDoContainer">${fillToDoContainer}</div>
     <button id="addToDo" onclick="addToDo()">add To Do</button>
     <button id="delToDo" onclick="delToDo()">delete To Do</button>
     `;
