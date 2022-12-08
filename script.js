@@ -5,7 +5,7 @@ function loadAddToDo(){
     let addMain = `
     <div class="add-main">
         <div class="add-main__header">
-              <h1>Add To Do</h1>
+              <h1>Add To Do List</h1>
         </div>
         <div class="add-main__body">
             <input type="text" placeholder="Enter To Do" id="add-input">
@@ -74,8 +74,8 @@ function setDefaultPage(){
     let defaultMain = `
     <h3 id="mainTitle">YOUR TO-DO LIST</h3>
     <div id="toDoContainer">${fillToDoContainer}</div>
-    <button id="loadAddToDo" onclick="loadAddToDo()">Add To Do</button>
-    <button id="delToDoList" onclick="delToDoList()">Delete To Do</button>
+    <button id="loadAddToDo" onclick="loadAddToDo()">Add To Do List</button>
+    <button id="delToDoList" onclick="delToDoList()">Delete To Do List</button>
     `;
 
     document.getElementById("main").innerHTML = defaultMain;
