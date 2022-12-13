@@ -1,3 +1,29 @@
+html{
+    background-color: antiquewhite;
+}
+
+.header{
+    text-align: center;
+    font-size: 45px;
+    
+}
+
+#mainTitle{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+button{
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 15px;
+}
+
+.toDoListTitle{
+    text-align: center;
+    font-size: 20px;
+}
+
 .footer{
     width: 100%;
     position: fixed;
