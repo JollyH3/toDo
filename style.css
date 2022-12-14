@@ -19,10 +19,24 @@ button{
     font-size: 15px;
 }
 
+
+
+#toDoContainer{
+    display: inline;
+}
+
 .toDoListTitle{
     text-align: center;
     font-size: 20px;
 }
+
+
+
+#toDoListPageTitle{
+    text-align: center;
+}
+
+
 
 .footer{
     width: 100%;
@@ -33,7 +47,15 @@ button{
     bottom: 0;
 }
 
+.clear{
+    clear:both;
+    position: relative;
+}
+
 .toDoPackage{
+    width: fit-content;
+    margin-right: 2px;
+    float: left;
     background: aqua;
     border-radius: 30px;
     border: 2px solid black;
@@ -41,6 +63,7 @@ button{
 }
 
 .toDoPackageLink{
+    list-style: none;
     color: black;
     text-decoration: none;
 }

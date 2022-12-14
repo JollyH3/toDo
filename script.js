@@ -74,6 +74,7 @@ function setDefaultPage(){
     let defaultMain = `
     <h3 id="mainTitle">YOUR TO-DO LIST</h3>
     <div id="toDoContainer">${fillToDoContainer}</div>
+    <div class="clear"></div>
     <button id="loadAddToDo" onclick="loadAddToDo()">Add To Do List</button>
     <button id="delToDoList" onclick="delToDoList()">Delete To Do List</button>
     `;
