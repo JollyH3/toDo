@@ -10,7 +10,7 @@ function loadAddToDo(){
         <div class="add-main__body">
             <input type="text" placeholder="Enter To Do" id="add-input">
             <label for="color">Color</label>
-            <input type="color" id="color" name="color" value="#000000">
+            <input type="color" id="color" name="color" value="#FFFFFF">
             <button id="add-button" onclick="addToDoList()">Add</button>
             <button id="cancel-button" onclick="setDefaultPage()">Cancel</button>
         </div>
