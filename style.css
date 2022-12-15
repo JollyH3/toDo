@@ -8,6 +8,11 @@ html{
     
 }
 
+.main{
+    margin-bottom: 60px;
+}
+
+
 #mainTitle{
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
@@ -17,6 +22,8 @@ button{
     border-radius: 10px;
     border-width: 1px;
     font-size: 15px;
+    margin: 1px;
+    display: inline;
 }
 
 
@@ -37,7 +44,6 @@ button{
 }
 
 
-
 .footer{
     width: 100%;
     position: fixed;
@@ -47,10 +53,12 @@ button{
     bottom: 0;
 }
 
+
 .clear{
     clear:both;
-    position: relative;
+    
 }
+
 
 .toDoPackage{
     width: fit-content;
