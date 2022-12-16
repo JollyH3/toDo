@@ -135,7 +135,7 @@ function getContent(id, callback){
                 <input type="text" placeholder="Enter To Do" id="toDoListInput">
                 <button id="add-button" onclick="addToDo(${i})">Add</button>
                 <button id="delete-button" onclick="delToDo(${i})">Delete</button>
-                <button id="cancel-button" onclick="setDefaultPage()">Cancel</button>
+                <button id="back-button" onclick="setDefaultPage()">Back</button>
             </div>
         </div>
         `;
@@ -182,7 +182,7 @@ function addToDo(id){
 
 function delToDo(){
     document.getElementById("toDoListPageTitle").innerHTML = "Press any To Do to delete";
-    let cancel = document.getElementById("cancel-button");
+    let cancel = document.getElementById("back-button");
     cancel.innerHTML = "Cancel";
     cancel.setAttribute("onclick", "loadContent()");
     let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
