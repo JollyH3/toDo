@@ -85,6 +85,9 @@ function setDefaultPage(){
 
     document.getElementById("main").innerHTML = defaultMain;
 
+    //set hash to nothing
+    location.hash = "";
+
     //set color
     if (toDoDir != null){
         for (let i = 0; i < toDoDir.length; i++) {
@@ -92,18 +95,15 @@ function setDefaultPage(){
         }
     }
     for (let i = 0; i < toDoDir.length; i++) {
-        if (toDoDir[i].toDoList[0].done == true){
-            document.getElementsByClassName("toDoList1")[i].style.textDecoration = "line-through";
-        }
-        if (toDoDir[i].toDoList[1].done == true){
-            document.getElementsByClassName("toDoList2")[i].style.textDecoration = "line-through";
+        if (toDoDir[i].toDoList != null){
+            if (toDoDir[i].toDoList[0].done == true){
+                document.getElementsByClassName("toDoList1")[i].style.textDecoration = "line-through";
+            }
+            if (toDoDir[i].toDoList[1].done == true){
+                document.getElementsByClassName("toDoList2")[i].style.textDecoration = "line-through";
+            }
         }
     }
-
-
-
-    //set hash to nothing
-    location.hash = "";
 }
 
 function toDoList(toDo){
