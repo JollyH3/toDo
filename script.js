@@ -60,8 +60,8 @@ function setDefaultPage(){
             <div id="toDoInternalPackage">
             <p class="toDoListTitle">${toDoDir[i].title}</p>
             <ul class="toDoList">
-            <li class="toDoList1">${toDoList(toDoDir[i].toDoList[0].text)}</li>
-            <li class="toDoList2">${toDoList(toDoDir[i].toDoList[1].text)}</li>
+            <li class="toDoList1">${toDoList(toDoDir[i].toDoList[0])}</li>
+            <li class="toDoList2">${toDoList(toDoDir[i].toDoList[1])}</li>
             <li class="toDoList3">...</li>
             </li>
             </ul>
@@ -110,7 +110,7 @@ function toDoList(toDo){
     if (toDo == null){
         return "add to do";
     }else{
-        return toDo;
+        return toDo.text;
     }
 }
 
