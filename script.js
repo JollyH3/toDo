@@ -25,6 +25,8 @@ function addToDoList(){
     let toDo = {
         title : document.getElementById("add-input").value,
         color : document.getElementById("color").value,
+        cDate : today.toLocaleDateString(),
+        lastUpdate : today.toLocaleDateString(),
         toDoList: []
     };
 
@@ -58,12 +60,13 @@ function setDefaultPage(){
             <div id="toDoInternalPackage">
             <p class="toDoListTitle">${toDoDir[i].title}</p>
             <ul class="toDoList">
-            <li class="toDoList1">${toDoList(toDoDir[i].toDoList[0])}</li>
-            <li class="toDoList2">${toDoList(toDoDir[i].toDoList[1])}</li>
+            <li class="toDoList1">${toDoList(toDoDir[i].toDoList[0].text)}</li>
+            <li class="toDoList2">${toDoList(toDoDir[i].toDoList[1].text)}</li>
             <li class="toDoList3">...</li>
             </li>
             </ul>
-            <p></p>
+            <p id="cDate">Created: ${toDoDir[i].cDate}</p>
+            <p id="lastUpdate">last update: ${toDoDir[i].lastUpdate}</p>
             </div>
             </a>
             </div>
@@ -88,6 +91,16 @@ function setDefaultPage(){
             document.getElementById("toDo" + i).style.backgroundColor = toDoDir[i].color;
         }
     }
+    for (let i = 0; i < toDoDir.length; i++) {
+        if (toDoDir[i].toDoList[0].done == true){
+            document.getElementsByClassName("toDoList1")[i].style.textDecoration = "line-through";
+        }
+        if (toDoDir[i].toDoList[1].done == true){
+            document.getElementsByClassName("toDoList2")[i].style.textDecoration = "line-through";
+        }
+    }
+
+
 
     //set hash to nothing
     location.hash = "";
@@ -142,16 +155,27 @@ function getContent(id, callback){
     }
 
     callback(pages[id]);
-
 }
 
+function setColor(id){
+    let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
+    for (let i = 0; i < toDoDir[id].toDoList.length; i++) {
+        if (toDoDir[id].toDoList[i].done == true){
+            document.getElementById("toDoList" + id + "_item" + i).style.textDecoration = "line-through";
+            document.getElementById("toDoList" + id + "_item" + i).style.color = "red";
+        }else{
+            document.getElementById("toDoList" + id + "_item" + i).style.textDecoration = "none";
+            document.getElementById("toDoList" + id + "_item" + i).style.color = "black";
+        }
+    }
+}
 function everyToDo(id){
     let everyToDo = "";
     let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
 
     for (let i = 0; i < toDoDir[id].toDoList.length; i++) {
         everyToDo += `
-        <p id="${"toDoList" + id + "_item" + i}" onclick="doToDo()">${toDoDir[id].toDoList[i]}</p>
+        <p id="${"toDoList" + id + "_item" + i}" onclick="doToDo()">${toDoDir[id].toDoList[i].text}</p>
         `;
     }
     return everyToDo;
@@ -166,15 +190,21 @@ function loadContent(){
     }else {
         getContent(id, function (content) {
             main.innerHTML = content;
+            setColor(id);
         });
     }
 }
 
 function addToDo(id){
     let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
-    let toDo = document.getElementById("toDoListInput").value;
+    let toDoText = document.getElementById("toDoListInput").value;
 
+    let toDo = {
+        text: toDoText,
+        done: false
+    }
     toDoDir[id].toDoList.push(toDo);
+    toDoDir[id].lastUpdate = today.toLocaleDateString();
 
     localStorage.setItem("toDoDir", JSON.stringify(toDoDir));
     loadContent();
@@ -187,6 +217,7 @@ function delToDo(){
     cancel.setAttribute("onclick", "loadContent()");
     let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
     let id = location.hash.substring(1);
+    toDoDir[id].lastUpdate = today.toLocaleDateString()
 
     for (let i = 0; i < toDoDir[id].toDoList.length; i++) {
         document.getElementById("toDoList" + id + "_item" + i).onclick = function () {
@@ -202,6 +233,13 @@ function doToDo(){
     toDo.style.textDecoration = "line-through";
     toDo.setAttribute("onclick", "removeDoToDo()");
     toDo.style.color = "red";
+    let n = toDo.getAttribute("id").slice(14, 15);
+
+    let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
+    let id = location.hash.substring(1);
+    toDoDir[id].lastUpdate = today.toLocaleDateString()
+    toDoDir[id].toDoList[n].done = true;
+    localStorage.setItem("toDoDir", JSON.stringify(toDoDir));
 }
 
 function removeDoToDo(){
@@ -209,6 +247,22 @@ function removeDoToDo(){
     toDo.style.textDecoration = "none";
     toDo.setAttribute("onclick", "doToDo()");
     toDo.style.color = "black";
+
+    let n = toDo.getAttribute("id").slice(14, 15);
+
+    let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
+    let id = location.hash.substring(1);
+    toDoDir[id].lastUpdate = today.toLocaleDateString()
+    toDoDir[id].toDoList[n].done = false;
+    localStorage.setItem("toDoDir", JSON.stringify(toDoDir));
+}
+
+function updateDate(id){
+    let toDoDir = JSON.parse(localStorage.getItem("toDoDir"));
+    toDoDir[id].lastUpdate = today.toLocaleDateString()
 }
 
 window.addEventListener("hashchange", loadContent);
+
+const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
