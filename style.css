@@ -135,7 +135,14 @@ p{
 
     #toDoListInput{
         width: 30%;
+    }
 
+    .toDoPackage{
+        margin-left: 25%;
+    }
+
+    #loadAddToDo{
+        margin-left: 25%;
     }
 
 }
