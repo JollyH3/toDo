@@ -144,11 +144,11 @@ function getContent(id, callback){
                 <h1 id="toDoListPageTitle">${toDoDir[i].title}</h1>
             </div>
             <div class="toDoListPage__body">
-            <div class="everyToDo">${everyToDo(i)}</div>
                 <input type="text" placeholder="Enter To Do" id="toDoListInput">
                 <button id="add-button" onclick="addToDo(${i})">Add</button>
                 <button id="delete-button" onclick="delToDo(${i})">Delete</button>
                 <button id="back-button" onclick="setDefaultPage()">Back</button>
+            <div class="everyToDo">${everyToDo(i)}</div>
             </div>
         </div>
         `;
@@ -175,7 +175,7 @@ function everyToDo(id){
 
     for (let i = 0; i < toDoDir[id].toDoList.length; i++) {
         everyToDo += `
-        <p id="${"toDoList" + id + "_item" + i}" onclick="doToDo()">${toDoDir[id].toDoList[i].text}</p>
+        <p class="List" id="${"toDoList" + id + "_item" + i}" onclick="doToDo()" >${toDoDir[id].toDoList[i].text}</p>
         `;
     }
     return everyToDo;
@@ -205,7 +205,6 @@ function addToDo(id){
     }
     toDoDir[id].toDoList.push(toDo);
     toDoDir[id].lastUpdate = today.toLocaleDateString();
-
     localStorage.setItem("toDoDir", JSON.stringify(toDoDir));
     loadContent();
 }
