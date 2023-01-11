@@ -179,6 +179,10 @@ p{
     background-color: rgb(206, 194, 194);
 }
 
+#toDoListInput{
+    margin-bottom: 4px;
+}
+
 #add-button{
     margin-bottom: 10px;
 }
