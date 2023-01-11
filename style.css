@@ -20,6 +20,7 @@ html{
     text-align: center;
 }
 button {
+    height: 30px;
     margin-bottom: 5px;
     border-width: 1px;
     outline: none;
