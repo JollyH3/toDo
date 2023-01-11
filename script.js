@@ -144,7 +144,7 @@ function getContent(id, callback){
                 <h1 id="toDoListPageTitle">${toDoDir[i].title}</h1>
             </div>
             <div class="toDoListPage__body">
-                <input type="text" placeholder="Enter To Do" id="toDoListInput">
+                <input type="text" placeholder="Enter To Do" id="toDoListInput"><br>
                 <button id="add-button" onclick="addToDo(${i})">Add</button>
                 <button id="delete-button" onclick="delToDo(${i})">Delete</button>
                 <button id="back-button" onclick="setDefaultPage()">Back</button>

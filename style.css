@@ -145,7 +145,6 @@ p{
 }
 
 .toDoPackageLink{
-    list-style: none;
     color: black;
     text-decoration: none;
 }
@@ -162,8 +161,18 @@ p{
   
 }
 
+.toDoListPage__body{
+    margin-left: 45%;
+}
+
+.List::before{
+    content: "▶ ";
+}
+
 .List{
+    list-style-type: disc;
     width: fit-content;
+    margin-left: 6%;
 }
 
 .List:hover{
@@ -175,6 +184,24 @@ p{
 }
 
 @media only screen and (max-width: 600px){
+
+    .toDoListPage__body{
+        margin-left: 35%;
+    }
+
+    #toDoListInput{
+        margin-left: 5%;
+        margin-bottom: 4px;
+    }
+
+    #add-button{
+
+        margin-left: 2%;
+    }
+
+    button{
+        width: max-content;
+    }
     
     .header{
         text-align: center;
