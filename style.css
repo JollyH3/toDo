@@ -1,5 +1,3 @@
-
-
 html{
     background-color: antiquewhite;
 }
@@ -20,6 +18,7 @@ html{
     text-align: center;
 }
 button {
+    text-align: center;
     height: 30px;
     margin-bottom: 5px;
     border-width: 1px;
@@ -159,12 +158,14 @@ p{
 .everyToDo{
     font-size: 20px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     font-size: 25px;
   
 }
 
-.toDoListPage__body{
-    margin-left: 45%;
-}
 
 .List::before{
     content: "▶ ";
@@ -188,10 +189,24 @@ p{
     margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 600px){
+.toDoListPage__body{
+    display: flex;
+    justify-content: center;
+}
 
+@media only screen and (max-width: 600px){
+    
     .toDoListPage__body{
-        margin-left: 35%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .everyToDo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
     }
 
     #toDoListInput{
@@ -200,12 +215,12 @@ p{
     }
 
     #add-button{
-
         margin-left: 2%;
     }
 
     button{
         width: max-content;
+        margin-right: 4px;
     }
     
     .header{
@@ -222,14 +237,8 @@ p{
 
     #toDoListInput{
         width: 30%;
+        height: 30px;
     }
 
-    .toDoPackage{
-        margin-left: 25%;
-    }
-
-    #loadAddToDo{
-        margin-left: 25%;
-    }
-
+    
 }

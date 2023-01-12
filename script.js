@@ -148,8 +148,8 @@ function getContent(id, callback){
                 <button id="add-button" onclick="addToDo(${i})">Add</button>
                 <button id="delete-button" onclick="delToDo(${i})">Delete</button>
                 <button id="back-button" onclick="setDefaultPage()">Back</button>
-            <div class="everyToDo">${everyToDo(i)}</div>
             </div>
+            <div class="everyToDo">${everyToDo(i)}</div>
         </div>
         `;
     }
